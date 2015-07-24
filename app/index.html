@@ -43,23 +43,27 @@
   <div class="header clearfix">
     <nav>
       <ul class="nav nav-pills pull-right">
-        <li role="presentation" ng-class="model.appService.currentTab == 'home' && 'active' || ''" ng-click="model.appService.currentTab = 'home'"><a href="#">Home</a></li>
-        <li role="presentation" ng-class="model.appService.currentTab == 'search' && 'active' || ''" ng-click="model.appService.currentTab ='search'")><a href="#">Search</a></li>
-        <li role="presentation" ng-class="model.appService.currentTab == 'fav' && 'active' || ''" ng-click="model.appService.currentTab ='fav'"><a href="#">Favorites</a></li>
+        <li role="presentation" ng-class="model.currentTab == 'home' && 'active' || ''" ng-click="model.currentTab = 'home'"><a href="#">Home</a></li>
+        <li role="presentation" ng-class="model.currentTab == 'search' && 'active' || ''" ng-click="model.currentTab ='search'")><a href="#">Search</a></li>
+        <li role="presentation" ng-class="model.currentTab == 'fav' && 'active' || ''" ng-click="model.currentTab ='fav'"><a href="#">Favorites</a></li>
+        <li role="presentation" ng-class="model.currentTab == 'settings' && 'active' || ''" ng-click="model.currentTab ='settings'"><a href="#">Settings</a></li>
       </ul>
     </nav>
 
     <input type="search" placeholder="Search songs..." class="form-control" style="width:50%;" ng-model="model.searchString" ng-change="model.search(model.searchString)"></input>
   </div>
-  <div ng-switch on="model.appService.currentTab" ng-animate="'animate'">
+  <div ng-switch on="model.currentTab" ng-animate="'animate'">
     <div ng-switch-when="home" >
       <div ng-include="'home/home.html'"></div>
     </div>
     <div ng-switch-when="search">
-      <ng-include src="'search/search.html'" onload="model.search(model.searchString)">
+      <ng-include src="'search/search.html'"/>
     </div>
     <div ng-switch-when="fav" >
-      <ng-include src="'favorite/favorite.html'" onload="model.favorites()">
+      <ng-include src="'favorite/favorite.html'"/>
+    </div>
+    <div ng-switch-when="settings" >
+      <ng-include src="'settings/settings.html'"/>
     </div>
   </div>
 </div>
@@ -83,6 +87,7 @@
 <script src="home/home.js"></script>
 <script src="search/search.js"></script>
 <script src="favorite/favorite.js"></script>
+<script src="settings/settings.js"></script>
 <script src="components/version/version.js"></script>
 <script src="components/version/version-directive.js"></script>
 <script src="components/version/interpolate-filter.js"></script>

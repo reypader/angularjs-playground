@@ -4,22 +4,23 @@
 var app=angular.module('myApp', [
   'myApp.home',
   'myApp.search',
-  'myApp.favorite'
+  'myApp.favorite',
+  'myApp.setting'
   ]);
 app.config(['$locationProvider',  function($locationProvider) {
+     $locationProvider.html5Mode(true);
 }]);
 
-app.controller('MainCtrl', ['$http','dataService','appService','favoriteService','searchService','$filter','$timeout', function($http,dataService,appService,favoriteService,searchService,$filter,$timeout){
+app.controller('MainCtrl', ['$http','dataService','searchService','$filter','$timeout', function($http,dataService,searchService,$filter,$timeout){
   var _timeout;
   var model = this;
-  
+
+  model.currentTab = 'home';
   model.searchString = '';
-  model.appService = appService;
   model.dataService = dataService;
-  model.searchService = searchService;
 
   model.search = function(searchString){
-    model.appService.currentTab='search';
+    model.currentTab='search';
     if(_timeout){
       $timeout.cancel(_timeout);
     }
@@ -31,23 +32,13 @@ app.controller('MainCtrl', ['$http','dataService','appService','favoriteService'
    },1000);
     
   };
-  model.favorites = function(){
-    favoriteService.loadFavorites(dataService.userId);
-  }
   
 }]);
 
 app.factory('dataService', function($http) {
   var dataService = {
-    userId:"reynaldmpader@cloudsherpas.com",
-    searchResult: []
+    userId:"reynald.pader@cloudsherpas.com",
+    searchResult:[]
   };
   return dataService;
-});
-
-app.factory('appService', function($http) {
-  var appService = {
-    currentTab: 'home'
-  };
-  return appService;
 });
