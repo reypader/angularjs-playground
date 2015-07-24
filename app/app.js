@@ -27,6 +27,11 @@ app.controller('MainCtrl', ['$http','dataService','searchService','$filter','$ti
     _timeout = $timeout(function(){
      searchService.getSearchPromise(searchString).then(function(d) {
        dataService.searchResult = d.results;
+       if(d.results.length > 0){
+        dataService.hasResult = true;
+       } else {
+        dataService.hasResult = false;
+       }
      });
      _timeout = null;
    },1000);
@@ -38,7 +43,9 @@ app.controller('MainCtrl', ['$http','dataService','searchService','$filter','$ti
 app.factory('dataService', function($http) {
   var dataService = {
     userId:"reynald.pader@cloudsherpas.com",
-    searchResult:[]
+    searchResult:[],
+    hasResult: false,
+    hasFavorite: false
   };
   return dataService;
 });

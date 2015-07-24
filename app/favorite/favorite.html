@@ -1,6 +1,6 @@
 <h2>Favorites</h2>
-<div class="row marketing" ng-controller="FavCtrl as model">
-	<div class="col-lg-6" ng-repeat="track in model.favorites" style="margin-bottom:20px;" ng-mouseover="model.hoverOn($index)" ng-mouseleave="model.hoverOff($index)">
+<div class="row marketing" ng-controller="FavCtrl as model" ng-switch on="model.dataService.hasFavorite">
+	<div ng-switch-when="true" class="col-lg-6" ng-repeat="track in model.favorites" style="margin-bottom:20px;" ng-mouseover="model.hoverOn($index)" ng-mouseleave="model.hoverOff($index)">
 		<div style="float:left;margin-right: 20px; width:60px;height:60px;">
 			<img class="thumbnail" ng-src="{{track.artworkUrl60}}" >
 		</div>
@@ -14,14 +14,16 @@
 
 				<div class="preview">
 					<audio controls id="audio{{$index}}">
-						<source ng-src="{{model.trustSrc(track.previewUrl)}}" type="audio/x-m4a">
-						</audio>
-					</div>
+						<source ng-src="{{model.trustSrc(track.previewUrl)}}" type="audio/x-m4a"/>
+					</audio>
 				</div>
-				<div class="preview">
+			</div>
+			<div class="preview">
 				<a href="#" ng-click="model.deleteFavorite(track.id,$index)"><div class="circle-delete">Delete</div></a>
 				<a ng-href="{{track.trackViewUrl}}"><div class="circle-buy">Buy</div></a>
 			</div>
-			</div>
 		</div>
 	</div>
+	<div ng-switch-default style="text-align:center;"><h3>No favorite song yet.</h3>
+		</div>
+</div>

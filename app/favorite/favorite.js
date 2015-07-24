@@ -5,7 +5,8 @@ var app = angular.module('myApp.favorite', []).config([function() {
 
 app.controller('FavCtrl', ['$scope','favoriteService','dataService','$filter','$sce',function($scope,favoriteService,dataService,$filter,$sce) {
   var model = this;
-
+  model.dataService = dataService;
+  model.favorites = [];
   model.hoverOn = function(trackId){
     model.currentHover = trackId;
   };
@@ -20,15 +21,25 @@ app.controller('FavCtrl', ['$scope','favoriteService','dataService','$filter','$
   model.loadFavorites = function(src) {
     favoriteService.loadFavorites(src).then(function(d) {
       model.favorites = d;
+      model.checkFavorites();
     });
+    
   };
 
   model.deleteFavorite = function(src,index) {
     favoriteService.removeData(dataService.userId,src);
-
     model.favorites.splice(index, 1);
-
+    model.checkFavorites();
   };
+
+  model.checkFavorites = function(){
+      if(model.favorites.length > 0){
+        
+        model.dataService.hasFavorite = true;
+      } else {
+        model.dataService.hasFavorite = false;
+      }
+  }
   
   model.loadFavorites(dataService.userId);
 
