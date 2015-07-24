@@ -28,3 +28,125 @@
   content: "";
   padding: 0;
 }
+
+.hidden {
+  display: none;
+}
+
+.limited {
+   white-space: nowrap; 
+     
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+
+.thumb {
+    display:block;
+    margin:auto;
+}
+
+.control-overlay{
+    background: rgba(20,20,20,.3);
+  text-align:center;
+        display: table;
+    position: absolute;
+    top:0;
+    width: 100%;
+    height: 70px;
+}
+
+.control-overlay-inner{
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.preview {
+  
+     display:inline-block;
+     
+  }
+    
+
+.circle-fav  {
+    border-radius: 4px;
+    width: 60px;
+    height: 35px;
+    background: #449d44;
+    border-color: #398439;
+     display:inline-block;
+line-height: 35px;
+}
+
+.circle-buy  {
+    border-radius: 4px;
+    width: 60px;
+    height: 35px;
+    background: #FFE951;
+    border-color: #BEA600;
+     display:inline-block;
+line-height: 35px;
+}
+
+.circle-delete  {
+    border-radius: 4px;
+    width: 60px;
+    height: 35px;
+    background: #FF4545;
+    border-color: #9E0000;
+     display:inline-block;
+line-height: 35px;
+}
+
+
+.control-overlay a:link {
+    color: #000000;
+}
+
+/* visited link */
+.control-overlay a:visited {
+    color: #000000;
+}
+
+/* mouse over link */
+.control-overlay a:hover {
+    color: #FFFFFF;
+}
+
+/* selected link */
+.control-overlay a:active {
+    color: #FFFFFF;
+}
+
+
+.animate-enter, 
+.animate-leave
+{ 
+    -webkit-transition: 300ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -moz-transition: 300ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -ms-transition: 300ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -o-transition: 300ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    transition: 300ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+} 
+ 
+.animate-enter {
+    left: 100%;
+}
+.animate-enter.animate-enter-active {
+    left: 0;
+}
+ 
+.animate-leave {
+    left: 0;
+}
+.animate-leave.animate-leave-active{
+    left: -100%;
+}
+
+.jumbotron {
+  background-image: url("https://www.apple.com/itunes/home/images/music_image_large.jpg");
+    background-size:   cover;                      /* <------ */
+    background-repeat: no-repeat;
+    background-position: center center; 
+    color:white;
+}
